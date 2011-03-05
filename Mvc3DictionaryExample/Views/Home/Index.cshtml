@@ -1,9 +1,9 @@
 ﻿@{
-    View.Title = "Index";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>
-    Current scores</h2>
+<h2>Current scores</h2>
+
 <table>
     <tbody>
         @foreach (var kvp in Model)
@@ -17,8 +17,9 @@
         }
     </tbody>
 </table>
-<h2>
-    Enter new scores</h2>
+
+<h2>Enter new scores</h2>
+
 <form action="" method="post">
 <table id="edittable">
     <tbody>
