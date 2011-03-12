@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.ComponentModel;
 
     /// <summary>
     /// ASP.NET MVC Default Dictionary Binder
@@ -41,6 +42,11 @@ using System.Web.Mvc;
 #endif
         }
 
+        private object ConvertType(string stringValue, Type type)
+        {
+            return TypeDescriptor.GetConverter(type).ConvertFrom(stringValue);
+        }
+
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             Type modelType = bindingContext.ModelType;
@@ -63,9 +69,9 @@ using System.Web.Mvc;
                         object dictKey;
                         try
                         {
-                            dictKey = Convert.ChangeType(key.Substring(bindingContext.ModelName.Length + 1, endbracket - bindingContext.ModelName.Length - 1), ga[0]);
+                            dictKey = ConvertType(key.Substring(bindingContext.ModelName.Length + 1, endbracket - bindingContext.ModelName.Length - 1), ga[0]);
                         }
-                        catch (FormatException)
+                        catch (NotSupportedException)
                         {
                             continue;
                         }

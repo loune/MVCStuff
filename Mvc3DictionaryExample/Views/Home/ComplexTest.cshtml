@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "ComplexTest";
+}
+
+<h1>Complex Test</h1>
+
+<h2>Current scores</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Key</th>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (KeyValuePair<int, Mvc3DictionaryExample.Models.Person> kvp in Model)
+        {
+            var p = kvp.Value;
+            <tr>
+                <td>@kvp.Key</td>
+                <td>@p.FirstName</td>
+                <td>@p.LastName</td>
+                <td>@p.Age</td>
+                <td>@p.Location</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Enter new scores</h2>
+
+<form action="" method="post">
+<table id="edittable">
+    <thead>
+        <tr>
+            <th>Key</th>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (KeyValuePair<int, Mvc3DictionaryExample.Models.Person> kvp in Model)
+        {
+            var p = kvp.Value;
+            <tr>
+                <td>@kvp.Key</td>
+                <td><input name="people[@kvp.Key].FirstName" value="@p.FirstName" /></td>
+                <td><input name="people[@kvp.Key].LastName" value="@p.LastName" /></td>
+                <td><input name="people[@kvp.Key].Age" value="@p.Age" /></td>
+                <td><input name="people[@kvp.Key].Location" value="@p.Location" /></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<input type="submit" />
+</form>
+
