@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "GuidTest";
+}
+
+<h1>Guid in key Test</h1>
+
+<h2>Current scores</h2>
+
+<table>
+    <tbody>
+        @foreach (var kvp in Model)
+        {
+            <tr>
+                <td>@kvp.Key
+                </td>
+                <td>@kvp.Value
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Enter new scores</h2>
+
+<form action="" method="post">
+<table id="edittable">
+    <tbody>
+        @foreach (var kvp in Model)
+        {
+            <tr>
+                <td>@kvp.Key
+                </td>
+                <td>
+                    <input name="scores[@kvp.Key]" value="@kvp.Value" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<input type="submit" />
+</form>
