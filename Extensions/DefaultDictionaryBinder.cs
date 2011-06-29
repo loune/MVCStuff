@@ -104,7 +104,7 @@ using System.ComponentModel;
 
             if (nextBinder != null)
             {
-                nextBinder.BindModel(controllerContext, bindingContext);
+                return nextBinder.BindModel(controllerContext, bindingContext);
             }
 
             return base.BindModel(controllerContext, bindingContext);
