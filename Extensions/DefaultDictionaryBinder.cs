@@ -50,7 +50,16 @@ using System.ComponentModel;
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             Type modelType = bindingContext.ModelType;
-            Type idictType = modelType.GetInterface("System.Collections.Generic.IDictionary`2");
+            Type idictType;
+            
+            if (modelType.FullName.StartsWith("System.Collections.Generic.IDictionary`2"))
+            {
+                idictType = modelType;
+            }
+            else
+            {
+                idictType = modelType.GetInterface("System.Collections.Generic.IDictionary`2");
+            }
             if (idictType != null)
             {
                 object result = null;
